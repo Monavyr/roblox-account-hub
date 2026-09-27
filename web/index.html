@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="panel-token" content="__PANEL_TOKEN__">
+  <title>Roblox Account Hub v1.2.3</title>
+  <link rel="stylesheet" href="/styles.css?v=1.2.3">
+  <script src="/app.js?v=1.2.3" defer></script>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">RH</div>
+        <div>
+          <p class="eyebrow">LOCAL ROBLOX TOOL</p>
+          <div class="brand-title-row"><h1>Roblox Account Hub</h1><span class="version-chip">v1.2.3</span></div>
+          <p class="subtitle">Continue, Robux, друзья и быстрый запуск для нескольких аккаунтов</p>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Включить светлую тему" title="Переключить тему">
+          <span class="theme-icon" aria-hidden="true">☀</span>
+          <span class="theme-label">Светлая</span>
+        </button>
+        <div class="topbar-status">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span>Только 127.0.0.1</span>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="card import-card" aria-labelledby="import-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">01 · ИМПОРТ</p>
+            <h2 id="import-title">Добавить аккаунты</h2>
+          </div>
+          <div class="privacy-chip">Cookies только в памяти</div>
+        </div>
+
+        <div class="import-grid">
+          <form id="cookie-form" class="import-pane">
+            <label for="cookie-input">Одна .ROBLOSECURITY</label>
+            <div class="input-row">
+              <input
+                id="cookie-input"
+                type="password"
+                autocomplete="off"
+                spellcheck="false"
+                placeholder="_|WARNING:-DO-NOT-SHARE-THIS..."
+              >
+              <button class="button button-secondary" type="submit">Добавить</button>
+            </div>
+            <p class="field-help">Поле очищается сразу после отправки.</p>
+          </form>
+
+          <div class="import-pane import-file-pane">
+            <span class="field-label">Пакет из .txt</span>
+            <label id="drop-zone" class="drop-zone" for="file-input" tabindex="0">
+              <input id="file-input" type="file" accept=".txt,text/plain" multiple hidden>
+              <span class="drop-icon" aria-hidden="true">↓</span>
+              <span class="drop-title">Перетащите файл сюда</span>
+              <span class="drop-copy">или нажмите, чтобы выбрать · до 2 МБ</span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <section class="workflow" aria-label="Состояние проверки">
+        <div class="workflow-step is-ready">
+          <span class="step-number">1</span>
+          <span><strong>Названия EN</strong><small id="catalog-status">Загрузка…</small></span>
+        </div>
+        <div class="workflow-line" aria-hidden="true"></div>
+        <div class="workflow-step">
+          <span class="step-number">2</span>
+          <span><strong>Аккаунты</strong><small id="accounts-status">Пока не добавлены</small></span>
+        </div>
+        <div class="workflow-line" aria-hidden="true"></div>
+        <div class="workflow-step">
+          <span class="step-number">3</span>
+          <span><strong>Continue</strong><small id="scan-status">Ожидает запуска</small></span>
+        </div>
+      </section>
+
+      <section class="card report-card" aria-labelledby="report-title">
+        <div class="report-toolbar">
+          <div>
+            <p class="eyebrow">02 · ОТЧЁТ</p>
+            <h2 id="report-title">Аккаунты и быстрые действия</h2>
+            <p class="section-copy">У каждого аккаунта — отдельные данные Continue, финансы, заявки и запуск.</p>
+          </div>
+          <div class="toolbar-actions">
+            <button id="refresh-catalog-button" class="button button-quiet" type="button">Обновить названия</button>
+            <button id="clear-button" class="button button-quiet danger" type="button">Очистить</button>
+            <button id="scan-button" class="button button-primary" type="button">Проверить все</button>
+          </div>
+        </div>
+
+        <div class="report-columns" aria-hidden="true">
+          <span>Аккаунт и Robux</span>
+          <span>Continue, друзья и запуск</span>
+        </div>
+
+        <div id="accounts-list" class="accounts-list" aria-live="polite">
+          <div class="empty-state">
+            <div class="empty-icon" aria-hidden="true">◎</div>
+            <h3>Здесь появится отчёт</h3>
+            <p>Добавьте одну cookie или перетащите .txt с несколькими значениями. После импорта внутри карточки аккаунта появятся Robux, друзья и VIP-запуск.</p>
+          </div>
+        </div>
+
+        <div id="issues-panel" class="issues-panel" hidden>
+          <button id="issues-toggle" class="issues-toggle" type="button" aria-expanded="false">
+            <span>Ошибки импорта</span>
+            <span id="issues-count" class="count-badge">0</span>
+          </button>
+          <div id="issues-list" class="issues-list" hidden></div>
+        </div>
+      </section>
+
+      <section class="security-note">
+        <span class="security-icon" aria-hidden="true">◆</span>
+        <div>
+          <strong>Локальный режим</strong>
+          <p>Cookie не записываются в файлы, базу данных или журнал. После остановки Python-процесса список аккаунтов удаляется.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast-region" class="toast-region" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "target_place_ids": [
+    920587237,
+    142823291
+  ],
+  "host": "127.0.0.1",
+  "port": 8765,
+  "open_browser": true,
+  "launch_method": "browser",
+  "request_timeout_seconds": 25,
+  "account_concurrency": 4,
+  "catalog_concurrency": 6,
+  "retry_count": 2,
+  "max_accounts": 100
+}
